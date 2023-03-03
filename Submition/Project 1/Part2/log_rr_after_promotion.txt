@@ -1,0 +1,44 @@
+login as: ec2-user
+Authenticating with public key "EC2Secondary"
+Last login: Fri Mar  3 02:47:04 2023 from fp9875b93e.aicf206.ap.nuro.jp
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-1-11-45 ~]$ mysql -h database-readreplica.ckqpiypjseoi.us-west-2.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> SELECT * FROM movies;
++-------+------------------------+---------------+--------------+
+| title | genre                  | director      | release_year |
++-------+------------------------+---------------+--------------+
+| Joker | psychological thriller | Todd Phillips |         2019 |
++-------+------------------------+---------------+--------------+
+1 row in set (0.01 sec)
+
+MySQL [udacity]> INSERT INTO movies VALUE ("Dumb", "psychological thriller", "Todd Phillips", 2023);
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [udacity]> SELECT * FROM movies;                                          +-------+------------------------+---------------+--------------+
+| title | genre                  | director      | release_year |
++-------+------------------------+---------------+--------------+
+| Dumb  | psychological thriller | Todd Phillips |         2023 |
+| Joker | psychological thriller | Todd Phillips |         2019 |
++-------+------------------------+---------------+--------------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]>

@@ -1,0 +1,15 @@
+In general, a multi-AZ architecture can provide a minimum RTO of a few seconds to a few minutes for a single AZ outage. In case of an AZ failure, the database can be automatically failed over to a standby instance in another AZ within the same region, and the data can be automatically replicated to the standby instance using synchronous replication. The exact RTO will depend on the time it takes to detect the failure, initiate the failover process, and complete the replication of data to the standby instance.
+
+For a single region outage, the minimum RTO will depend on the specific recovery strategy in place. AWS recommends that customers use multi-region deployments for high availability and disaster recovery. In a multi-region deployment, the RTO can be reduced to a few minutes to a few hours, depending on the recovery strategy in place. One approach is to use a warm standby database in another region and replicate data using asynchronous replication. In this case, the RTO will depend on the time it takes to promote the standby database to the primary database, redirect traffic to the new primary database, and complete any necessary configuration changes.
+
+In terms of the minimum RPO for a single AZ outage, a multi-AZ architecture can provide a minimum RPO of a few seconds to a few minutes, depending on the specific replication strategy in place. With synchronous replication, the data is replicated to the standby instance in real-time, so there is virtually no data loss. With asynchronous replication, there can be some data loss, depending on the frequency of replication and the volume of transactions.
+
+For a single region outage, the minimum RPO will depend on the specific recovery strategy in place. Asynchronous replication can introduce data loss, so a warm standby database may be used in another region to minimize data loss. The RPO will depend on the frequency of replication and the amount of data that can be lost in case of a failure.
+
+In summary, a multi-AZ, multi-region database can provide a high level of availability and disaster recovery. The achievable RTO and RPO will depend on the specific database architecture, configuration, and workload requirements.
+
+Reference:
+AWS Multi-AZ Deployments: https://aws.amazon.com/rds/features/multi-az/
+AWS Disaster Recovery Whitepaper: https://d1.awsstatic.com/whitepapers/disaster-recovery-aws-multi-region-resiliency.pdf
+AWS Database Migration and Disaster Recovery Blog: https://aws.amazon.com/blogs/database/category/migration-disaster-recovery/
+AWS Database Best Practices Guide: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html
